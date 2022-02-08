@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelError1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonSendDataToServer = new System.Windows.Forms.Button();
+            this.textBoxDors = new System.Windows.Forms.TextBox();
+            this.textBoxEngine = new System.Windows.Forms.TextBox();
+            this.textBoxYear = new System.Windows.Forms.TextBox();
+            this.textBoxBrend = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +46,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxGetForId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -67,12 +68,13 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.labelError1);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox4);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.buttonSendDataToServer);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxDors);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxEngine);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxYear);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxBrend);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -85,12 +87,20 @@
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.textBox5);
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxGetForId);
             this.splitContainer1.Panel2.Controls.Add(this.label8);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
             this.splitContainer1.Size = new System.Drawing.Size(984, 611);
             this.splitContainer1.SplitterDistance = 387;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // labelError1
+            // 
+            this.labelError1.ForeColor = System.Drawing.Color.Black;
+            this.labelError1.Location = new System.Drawing.Point(10, 432);
+            this.labelError1.Name = "labelError1";
+            this.labelError1.Size = new System.Drawing.Size(370, 168);
+            this.labelError1.TabIndex = 11;
             // 
             // label6
             // 
@@ -102,42 +112,43 @@
             this.label6.TabIndex = 10;
             this.label6.Text = resources.GetString("label6.Text");
             // 
-            // button1
+            // buttonSendDataToServer
             // 
-            this.button1.Location = new System.Drawing.Point(266, 202);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Отправить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSendDataToServer.Location = new System.Drawing.Point(266, 202);
+            this.buttonSendDataToServer.Name = "buttonSendDataToServer";
+            this.buttonSendDataToServer.Size = new System.Drawing.Size(87, 23);
+            this.buttonSendDataToServer.TabIndex = 9;
+            this.buttonSendDataToServer.Text = "Отправить";
+            this.buttonSendDataToServer.UseVisualStyleBackColor = true;
+            this.buttonSendDataToServer.Click += new System.EventHandler(this.buttonSendDataToServer_Click);
             // 
-            // textBox4
+            // textBoxDors
             // 
-            this.textBox4.Location = new System.Drawing.Point(144, 173);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(209, 23);
-            this.textBox4.TabIndex = 8;
+            this.textBoxDors.Location = new System.Drawing.Point(144, 173);
+            this.textBoxDors.Name = "textBoxDors";
+            this.textBoxDors.Size = new System.Drawing.Size(209, 23);
+            this.textBoxDors.TabIndex = 8;
             // 
-            // textBox3
+            // textBoxEngine
             // 
-            this.textBox3.Location = new System.Drawing.Point(144, 136);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(209, 23);
-            this.textBox3.TabIndex = 7;
+            this.textBoxEngine.Location = new System.Drawing.Point(144, 136);
+            this.textBoxEngine.Name = "textBoxEngine";
+            this.textBoxEngine.Size = new System.Drawing.Size(209, 23);
+            this.textBoxEngine.TabIndex = 7;
             // 
-            // textBox2
+            // textBoxYear
             // 
-            this.textBox2.Location = new System.Drawing.Point(144, 98);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(209, 23);
-            this.textBox2.TabIndex = 6;
+            this.textBoxYear.Location = new System.Drawing.Point(144, 98);
+            this.textBoxYear.Name = "textBoxYear";
+            this.textBoxYear.Size = new System.Drawing.Size(209, 23);
+            this.textBoxYear.TabIndex = 6;
             // 
-            // textBox1
+            // textBoxBrend
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 23);
-            this.textBox1.TabIndex = 5;
+            this.textBoxBrend.Location = new System.Drawing.Point(144, 63);
+            this.textBoxBrend.Name = "textBoxBrend";
+            this.textBoxBrend.Size = new System.Drawing.Size(209, 23);
+            this.textBoxBrend.TabIndex = 5;
             // 
             // label5
             // 
@@ -187,7 +198,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(343, 34);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Для отправки данных на сервер заполните все поля \r\nи нажмите \"отправить\"";
+            this.label1.Text = "Для отправки данных на сервер заполните все поля \r\nи нажмите \"Отправить\"";
             // 
             // labelData
             // 
@@ -227,12 +238,12 @@
             this.button2.Text = "Отправить";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // textBoxGetForId
             // 
-            this.textBox5.Location = new System.Drawing.Point(108, 63);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(92, 23);
-            this.textBox5.TabIndex = 11;
+            this.textBoxGetForId.Location = new System.Drawing.Point(108, 63);
+            this.textBoxGetForId.Name = "textBoxGetForId";
+            this.textBoxGetForId.Size = new System.Drawing.Size(92, 23);
+            this.textBoxGetForId.TabIndex = 11;
             // 
             // label8
             // 
@@ -282,19 +293,20 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox textBoxDors;
+        private TextBox textBoxEngine;
+        private TextBox textBoxYear;
+        private TextBox textBoxBrend;
         private Label label6;
-        private Button button1;
+        private Button buttonSendDataToServer;
         private Button button3;
         private Label label9;
         private Button button2;
-        private TextBox textBox5;
+        private TextBox textBoxGetForId;
         private Label label8;
         private Label label7;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label labelData;
+        private Label labelError1;
     }
 }

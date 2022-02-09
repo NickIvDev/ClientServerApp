@@ -42,10 +42,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelData = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.labelError2 = new System.Windows.Forms.Label();
+            this.labelForServerData = new System.Windows.Forms.Label();
+            this.buttonGetAllData = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonGetForId = new System.Windows.Forms.Button();
             this.textBoxGetForId = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,10 +84,11 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.labelData);
-            this.splitContainer1.Panel2.Controls.Add(this.button3);
+            this.splitContainer1.Panel2.Controls.Add(this.labelError2);
+            this.splitContainer1.Panel2.Controls.Add(this.labelForServerData);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonGetAllData);
             this.splitContainer1.Panel2.Controls.Add(this.label9);
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonGetForId);
             this.splitContainer1.Panel2.Controls.Add(this.textBoxGetForId);
             this.splitContainer1.Panel2.Controls.Add(this.label8);
             this.splitContainer1.Panel2.Controls.Add(this.label7);
@@ -200,24 +202,34 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Для отправки данных на сервер заполните все поля \r\nи нажмите \"Отправить\"";
             // 
-            // labelData
+            // labelError2
             // 
-            this.labelData.BackColor = System.Drawing.SystemColors.Info;
-            this.labelData.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelData.Location = new System.Drawing.Point(12, 136);
-            this.labelData.Name = "labelData";
-            this.labelData.Size = new System.Drawing.Size(567, 464);
-            this.labelData.TabIndex = 15;
-            this.labelData.Text = "Ожидание запроса...";
+            this.labelError2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelError2.ForeColor = System.Drawing.Color.DarkOrange;
+            this.labelError2.Location = new System.Drawing.Point(308, 65);
+            this.labelError2.Name = "labelError2";
+            this.labelError2.Size = new System.Drawing.Size(271, 17);
+            this.labelError2.TabIndex = 16;
             // 
-            // button3
+            // labelForServerData
             // 
-            this.button3.Location = new System.Drawing.Point(215, 96);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Отправить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.labelForServerData.BackColor = System.Drawing.SystemColors.Info;
+            this.labelForServerData.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelForServerData.Location = new System.Drawing.Point(12, 136);
+            this.labelForServerData.Name = "labelForServerData";
+            this.labelForServerData.Size = new System.Drawing.Size(567, 464);
+            this.labelForServerData.TabIndex = 15;
+            this.labelForServerData.Text = "Ожидание запроса...";
+            // 
+            // buttonGetAllData
+            // 
+            this.buttonGetAllData.Location = new System.Drawing.Point(215, 96);
+            this.buttonGetAllData.Name = "buttonGetAllData";
+            this.buttonGetAllData.Size = new System.Drawing.Size(87, 23);
+            this.buttonGetAllData.TabIndex = 14;
+            this.buttonGetAllData.Text = "Отправить";
+            this.buttonGetAllData.UseVisualStyleBackColor = true;
+            this.buttonGetAllData.Click += new System.EventHandler(this.buttonGetAllData_Click);
             // 
             // label9
             // 
@@ -229,14 +241,15 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "Получить все данные:";
             // 
-            // button2
+            // buttonGetForId
             // 
-            this.button2.Location = new System.Drawing.Point(215, 63);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(87, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Отправить";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonGetForId.Location = new System.Drawing.Point(215, 63);
+            this.buttonGetForId.Name = "buttonGetForId";
+            this.buttonGetForId.Size = new System.Drawing.Size(87, 23);
+            this.buttonGetForId.TabIndex = 11;
+            this.buttonGetForId.Text = "Отправить";
+            this.buttonGetForId.UseVisualStyleBackColor = true;
+            this.buttonGetForId.Click += new System.EventHandler(this.buttonGetForId_Click);
             // 
             // textBoxGetForId
             // 
@@ -299,14 +312,15 @@
         private TextBox textBoxBrend;
         private Label label6;
         private Button buttonSendDataToServer;
-        private Button button3;
+        private Button buttonGetAllData;
         private Label label9;
-        private Button button2;
+        private Button buttonGetForId;
         private TextBox textBoxGetForId;
         private Label label8;
         private Label label7;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Label labelData;
+        private Label labelForServerData;
         private Label labelError1;
+        private Label labelError2;
     }
 }

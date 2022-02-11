@@ -46,8 +46,25 @@ namespace ServerApp
                     }
                     while (handler.Available > 0);
 
+                    // отправляем данные для записи в бд
+                    if (builder.ToString() != "allData" && builder.ToString().Contains("*"))
+                    {
+                        Console.WriteLine($"Получены данные для записи в БД: {DateTime.Now.ToString()}");
+                        string[] dataForCarModel = builder.ToString().Split('*');
+                        CarModel model = new CarModel() 
+                        {
+                            CountTypes = byte.Parse(dataForCarModel[0]),
+                            Brend = dataForCarModel[1],
+                            Year = short.Parse(dataForCarModel[2]),
+                            Engine = float.Parse(dataForCarModel[3]),
+                            Dors = byte.Parse(dataForCarModel[4])
+                        };
+                        db.CarModels.Add(model);
+                        db.SaveChanges();
+                        Console.WriteLine($"Данные успешно записаны: {DateTime.Now.ToString()}");
+                    }
                     // запрос на все данные
-                    if (builder.ToString() == "allData")
+                    else if (builder.ToString() == "allData")
                     {
                         Console.WriteLine($"Получен запрос на все данные: {DateTime.Now.ToString()}");
                         List<CarModel> carModels = db.CarModels.ToList();
@@ -56,15 +73,23 @@ namespace ServerApp
                         {                         
                             for (int i = 0; i < carModels.Count-1; i++)
                             {
-                                builder.Append($"{carModels[i].Id}*{carModels[i].Brend}*{carModels[i].Year}*{carModels[i].Engine}*{carModels[i].Dors}");
+                                builder.Append($"{carModels[i].Id}*{carModels[i].CountTypes}*{carModels[i].Brend}*{carModels[i].Year}*{carModels[i].Engine}*{carModels[i].Dors}");
                                 builder.Append("//");
                             }
                             int lastCount = carModels.Count-1;
-                            builder.Append($"{carModels[lastCount].Id}*{carModels[lastCount].Brend}*{carModels[lastCount].Year}*{carModels[lastCount].Engine}*{carModels[lastCount].Dors}");
+                            builder.Append($"{carModels[lastCount].Id}*{carModels[lastCount].CountTypes}*{carModels[lastCount].Brend}*{carModels[lastCount].Year}*{carModels[lastCount].Engine}*{carModels[lastCount].Dors}");
+                            //отправляем ответ
+                            string dataStr = builder.ToString();
+                            data = Encoding.Unicode.GetBytes(dataStr);
+                            handler.Send(data);
                         }
                         else
                         {
                             builder.Append("notData");
+                            //отправляем ответ
+                            string dataStr = builder.ToString();
+                            data = Encoding.Unicode.GetBytes(dataStr);
+                            handler.Send(data);
                         }                       
                     }
                     // запрос на данные по Id
@@ -77,18 +102,22 @@ namespace ServerApp
                         builder = new StringBuilder();
                         if (model != null)
                         {
-                            builder.Append($"{model.Id}*{model.Brend}*{model.Year}*{model.Engine}*{model.Dors}");
+                            builder.Append($"{model.Id}*{model.CountTypes}*{model.Brend}*{model.Year}*{model.Engine}*{model.Dors}");
+                            //отправляем ответ
+                            string dataStr = builder.ToString();
+                            data = Encoding.Unicode.GetBytes(dataStr);
+                            handler.Send(data);
                         }
                         else
                         {
                             builder.Append("notData");
+                            //отправляем ответ
+                            string dataStr = builder.ToString();
+                            data = Encoding.Unicode.GetBytes(dataStr);
+                            handler.Send(data);
                         }
                     }
 
-                    //отправляем ответ
-                    string dataStr = builder.ToString();
-                    data = Encoding.Unicode.GetBytes(dataStr);
-                    handler.Send(data);
                     //закрываем сокет
                     handler.Shutdown(SocketShutdown.Both);
                     handler.Close();

@@ -15,10 +15,11 @@ namespace ClientApp
             CarModelForXml model = new CarModelForXml()
             {
                 Id = int.Parse(dataForXml[0]),
-                Brend = dataForXml[1],
-                Year = short.Parse(dataForXml[2]),
-                Engine = float.Parse(dataForXml[3]),
-                Dors = byte.Parse(dataForXml[4])
+                CountTypes = byte.Parse(dataForXml[1]),
+                Brend = dataForXml[2],
+                Year = short.Parse(dataForXml[3]),
+                Engine = float.Parse(dataForXml[4]),
+                Dors = byte.Parse(dataForXml[5])
             };
 
             string fileName = $"dataId_{model.Id}.xml";
@@ -39,10 +40,11 @@ namespace ClientApp
                 model.Add(new CarModelForXml() 
                 {
                     Id=int.Parse(tempArr[0]),
-                    Brend=tempArr[1],
-                    Year=short.Parse(tempArr[2]),
-                    Engine=float.Parse(tempArr[3]),
-                    Dors=byte.Parse(tempArr[4])
+                    CountTypes = byte.Parse(tempArr[1]),
+                    Brend =tempArr[2],
+                    Year=short.Parse(tempArr[3]),
+                    Engine=float.Parse(tempArr[4]),
+                    Dors=byte.Parse(tempArr[5])
                 });
             }
 

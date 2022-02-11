@@ -15,7 +15,7 @@ namespace ClientApp
         static string address = "127.0.0.1"; // адрес сервера
         
         // отправка данных серверу
-        public void SendDataForServer() 
+        public void SendDataForServer(string dataStrForServer) 
         {
             try
             {
@@ -24,23 +24,8 @@ namespace ClientApp
                 socket.Connect(ipPoint);
                 // подключаемся к удаленному хосту
 
-                Console.Write("Введите сообщение:");
-                string message = Console.ReadLine();
-                byte[] data = Encoding.Unicode.GetBytes(message);
+                byte[] data = Encoding.Unicode.GetBytes(dataStrForServer);
                 socket.Send(data);
-
-                // получаем ответ
-                data = new byte[256]; // буфер для ответа
-                StringBuilder builder = new StringBuilder();
-                int bytes = 0; // количество полученных байт
-
-                do
-                {
-                    bytes = socket.Receive(data, data.Length, 0);
-                    builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-                }
-                while (socket.Available > 0);
-                Console.WriteLine("ответ сервера: " + builder.ToString());
 
                 // закрываем сокет
                 socket.Shutdown(SocketShutdown.Both);
@@ -48,7 +33,6 @@ namespace ClientApp
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
             }
             Console.Read();
         }

@@ -5,8 +5,10 @@ namespace ClientApp
         public Form1()
         {
             InitializeComponent();
+            textBoxForServerData.ReadOnly = true;
         }
 
+        // обработчик кнопки отправки данных на сервер
         private void buttonSendDataToServer_Click(object sender, EventArgs e)
         {
             string brend = textBoxBrend.Text;
@@ -78,9 +80,11 @@ namespace ClientApp
             else
             {
                 GetDataForServer getDataForServer = new GetDataForServer();
-                //getDataForServer.GetStuctBytes(brend, year, engine, dors);
-                
+                SendData sendData = new SendData();
 
+                string dataStrForServer = getDataForServer.GetDataStrForSerever(brend, year, engine, dors);
+                sendData.SendDataForServer(dataStrForServer);
+                
                 labelError1.Text += $"Марка: {textBoxBrend.Text}\n" +
                                     $"Год выпуска: {textBoxYear.Text}\n" +
                                     $"Объем двигателя: {textBoxEngine.Text}\n" +
@@ -96,6 +100,7 @@ namespace ClientApp
             }
         }
 
+        // обработчик кнопки получения данных по id
         private void buttonGetForId_Click(object sender, EventArgs e)
         {
             string id = textBoxGetForId.Text;
@@ -116,20 +121,27 @@ namespace ClientApp
                 SaveXml saveXml = new SaveXml();
                 string[] serverDataArr = sendData.GetDataToServerForId(id);
 
-                labelForServerData.Text = "";
+                textBoxForServerData.Text = "";
                 if (serverDataArr == null)
                 {
-                    labelForServerData.Text += $"Данные по Id {id} отсутствуют";
+                    textBoxForServerData.Text += $"Данные по Id {id} отсутствуют";
                 }
                 else
                 {
-                    labelForServerData.Text += "Получены данные:\n";
-                    labelForServerData.Text += $"Id: {serverDataArr[0]}\n";
-                    labelForServerData.Text += $"Марка: {serverDataArr[1]}\n";
-                    labelForServerData.Text += $"Год выпуска: {serverDataArr[2]}\n";
-                    labelForServerData.Text += $"Объем двигателя: {serverDataArr[3]}\n";
-                    labelForServerData.Text += $"Количество дверей: {serverDataArr[4]}\n";
-
+                    textBoxForServerData.Text += "Получены данные:\r\n\r\n";
+                    textBoxForServerData.Text += $"Id: {serverDataArr[0]}\r\n";
+                    textBoxForServerData.Text += $"Количество типов: {serverDataArr[1]}\r\n";
+                    textBoxForServerData.Text += $"Марка: {serverDataArr[2]}\r\n";
+                    textBoxForServerData.Text += $"Год выпуска: {serverDataArr[3]}\r\n";
+                    if (serverDataArr[4]!="0")
+                    {
+                        textBoxForServerData.Text += $"Объем двигателя: {serverDataArr[4]}\r\n";
+                    }
+                    if (serverDataArr[5] != "0")
+                    {
+                        textBoxForServerData.Text += $"Количество дверей: {serverDataArr[5]}\r\n";
+                    }
+                    
                     saveXml.SaveXmlForId(serverDataArr);
                 }
             }
@@ -139,29 +151,38 @@ namespace ClientApp
             }     
         }
 
+        // обработчик кнопки получения всех данных
         private void buttonGetAllData_Click(object sender, EventArgs e)
         {
             SendData sendData = new SendData();
             SaveXml saveXml = new SaveXml();
             string[] serverDataArr = sendData.GetAllDataToServer();
 
-            labelForServerData.Text = "";
+            textBoxForServerData.Text = "";
             if (serverDataArr == null)
             {
-                labelForServerData.Text += $"Данные отсутствуют, добавьте данные";
+                textBoxForServerData.Text += $"Данные отсутствуют, добавьте данные";
             }
             else
             {
-                labelForServerData.Text += "Получены данные:\n";
+                textBoxForServerData.Text += "Получены данные:\r\n\r\n";
 
                 for (int i = 0; i < serverDataArr.Length; i++)
                 {
                     string[] tempArr = serverDataArr[i].Split("*");
-                    labelForServerData.Text += $"Id: {tempArr[0]}\n";
-                    labelForServerData.Text += $"Марка: {tempArr[1]}\n";
-                    labelForServerData.Text += $"Год выпуска: {tempArr[2]}\n";
-                    labelForServerData.Text += $"Объем двигателя: {tempArr[3]}\n";
-                    labelForServerData.Text += $"Количество дверей: {tempArr[4]}\n\n";
+                    textBoxForServerData.Text += $"Id: {tempArr[0]}\r\n";
+                    textBoxForServerData.Text += $"Количество типов: {tempArr[1]}\r\n";
+                    textBoxForServerData.Text += $"Марка: {tempArr[2]}\r\n";
+                    textBoxForServerData.Text += $"Год выпуска: {tempArr[3]}\r\n";
+                    if (tempArr[4] != "0")
+                    {
+                        textBoxForServerData.Text += $"Объем двигателя: {tempArr[4]}\r\n";
+                    }
+                    if (tempArr[5] != "0")
+                    {
+                        textBoxForServerData.Text += $"Количество дверей: {tempArr[5]}\r\n";
+                    }
+                    textBoxForServerData.Text += "\r\n";
                 }
                 saveXml.SaveXmlForAllData(serverDataArr);
             }

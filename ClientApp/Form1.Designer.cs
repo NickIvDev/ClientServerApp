@@ -42,8 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxForServerData = new System.Windows.Forms.TextBox();
             this.labelError2 = new System.Windows.Forms.Label();
-            this.labelForServerData = new System.Windows.Forms.Label();
             this.buttonGetAllData = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonGetForId = new System.Windows.Forms.Button();
@@ -84,8 +84,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxForServerData);
             this.splitContainer1.Panel2.Controls.Add(this.labelError2);
-            this.splitContainer1.Panel2.Controls.Add(this.labelForServerData);
             this.splitContainer1.Panel2.Controls.Add(this.buttonGetAllData);
             this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.buttonGetForId);
@@ -202,6 +202,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Для отправки данных на сервер заполните все поля \r\nи нажмите \"Отправить\"";
             // 
+            // textBoxForServerData
+            // 
+            this.textBoxForServerData.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBoxForServerData.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.textBoxForServerData.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBoxForServerData.Location = new System.Drawing.Point(12, 136);
+            this.textBoxForServerData.Multiline = true;
+            this.textBoxForServerData.Name = "textBoxForServerData";
+            this.textBoxForServerData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxForServerData.Size = new System.Drawing.Size(567, 461);
+            this.textBoxForServerData.TabIndex = 17;
+            this.textBoxForServerData.Text = "Ожидание данных...";
+            // 
             // labelError2
             // 
             this.labelError2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -210,16 +223,6 @@
             this.labelError2.Name = "labelError2";
             this.labelError2.Size = new System.Drawing.Size(271, 17);
             this.labelError2.TabIndex = 16;
-            // 
-            // labelForServerData
-            // 
-            this.labelForServerData.BackColor = System.Drawing.SystemColors.Info;
-            this.labelForServerData.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelForServerData.Location = new System.Drawing.Point(12, 136);
-            this.labelForServerData.Name = "labelForServerData";
-            this.labelForServerData.Size = new System.Drawing.Size(567, 464);
-            this.labelForServerData.TabIndex = 15;
-            this.labelForServerData.Text = "Ожидание запроса...";
             // 
             // buttonGetAllData
             // 
@@ -319,8 +322,8 @@
         private Label label8;
         private Label label7;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Label labelForServerData;
         private Label labelError1;
         private Label labelError2;
+        private TextBox textBoxForServerData;
     }
 }

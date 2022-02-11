@@ -10,6 +10,7 @@ namespace ClientApp
     public class CarModelForXml
     {
         public int Id { get; set; }
+        public byte CountTypes { get; set; }
         public string Brend { get; set; }
         public short Year { get; set; }
         public float Engine { get; set; }
